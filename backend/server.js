@@ -8,8 +8,8 @@ const app = express();
 const port = process.env.PORT || 8081;
 
 app.use(cors());
-app.use(express.json());
-
+//app.use(express.json());
+app.use(bodyParser.json());
 
 //const uri = process.env.ATLAS_URI //|| 'mongodb://localhost/memeinfo';
 const uri = 'mongodb://localhost/memeinfo';
@@ -19,8 +19,6 @@ const connection = mongoose.connection;
 connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
-
-app.use(bodyParser.json());
 
 const memeRouter = require('./routes/meme');
 app.use('/memes', memeRouter);
