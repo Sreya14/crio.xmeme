@@ -14,8 +14,6 @@ sudo systemctl start mongod.service
 
 sudo systemctl status mongod
 
-sudo systemctl enable mongod
-
 mongo --eval 'db.runCommand({ connectionStatus: 1 })'
 
 sudo systemctl start mongod
@@ -29,4 +27,5 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 nvm install node
 
 sudo apt update -y
+
 sudo apt install git -y

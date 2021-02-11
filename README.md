@@ -1,4 +1,4 @@
-### Visit [link](https://x-meme-app.netlify.app/meme-list) for current website
+### Visit [link](https://x-meme-app.netlify.app/) for current website
 
 # Getting Started with X-Meme App
 
