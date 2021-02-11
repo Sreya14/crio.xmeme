@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-//const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -8,10 +8,10 @@ const app = express();
 const port = process.env.PORT || 8081;
 
 app.use(cors());
-app.use(express.json());
-//app.use(bodyParser.json());
 
-//const uri = process.env.ATLAS_URI //|| 'mongodb://localhost/memeinfo';
+
+app.use(bodyParser.json());
+
 const uri = 'mongodb://localhost/memeinfo';
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
 );
