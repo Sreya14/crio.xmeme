@@ -34,14 +34,11 @@ router.route('/:id').delete(async(req,res)=>{
   }
 })
 router.route('/').post((req, res) => {
-  const name = req.body.name;
-  const caption = req.body.caption;
-  const url = req.body.url;
 
   const newMeme = new Meme({
-    name,
-    caption,
-    url,
+    name:req.body.name,
+    url:req.body.url,
+    caption:req.body.caption
   });
 
   newMeme.save()
