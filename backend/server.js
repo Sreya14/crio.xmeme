@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -19,12 +20,14 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
 
+app.use(bodyParser.json());
+
 const memeRouter = require('./routes/meme');
 app.use('/memes', memeRouter);
 
-// app.get('/',(req,res)=>{
-//   res.send('Hello from Xmeme API');
-// });
+app.get('/',(req,res)=>{
+  res.send('Hello from Xmeme API');
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
