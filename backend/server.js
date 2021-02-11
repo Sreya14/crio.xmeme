@@ -11,10 +11,10 @@ app.use(cors());
 
 
 app.use(bodyParser.json());
-
+//const uri = process.env.ATLAS_URI //|| 'mongodb://localhost/memeinfo';
 const uri = 'mongodb://localhost/memeinfo';
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
-);
+,{ versionKey: false });
 const connection = mongoose.connection;
 connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
