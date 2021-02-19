@@ -1,37 +1,40 @@
-#MongoDB Installation
- 
-#Import the public key used by the package management system
-wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
- 
-#Create a list file for MongoDB.
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
- 
-#Reload local package database.
-sudo apt-get update
- 
-#Install the MongoDB packages
-sudo apt-get install -y mongodb-org
- 
-#Installation is done, now lets start mongodb 
- 
+#!/bin/bash
+
+# install and setup MongoDB + Node.js environment
+
+# import the public key used by the package management system
+wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
+
+# add sources
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+
+# update local machine
+sudo apt update
+
+# install mongodb packages
+sudo apt install -y mongodb-org
+
+#start MongoDB
 sudo systemctl start mongod
- 
-#Ensure that MongoDB will start following a system reboot
+
+# display MongoDB running status
+sudo systemctl status mongod
+
+# make mongodb as a service and restart on reboots
 sudo systemctl enable mongod
- 
- 
-#Node Setup
- 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
- 
-# .~/.nvm/nvm.sh 
- 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
- 
-#install node
+
+# set up node with nvm, download nvm by running the installation script 
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+
+
+# activate nvm
+. ~/.nvm/nvm.sh
+
+# install node's latest version
 nvm install node
- 
-#check the version
-node --version
+
+# installing v 13.14.0 which was used to develop the XMeme app
+nvm install 13.14.0
+
+# use the required version
+nvm use 13.14.0
